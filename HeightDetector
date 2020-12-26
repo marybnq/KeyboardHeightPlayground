@@ -1,0 +1,279 @@
+//MIT License
+//
+//Copyright (c) 2020 Federica Benacquista
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
+import Foundation
+import UIKit
+
+
+struct ScreenSize {
+    static let width = UIScreen.main.bounds.size.width
+    static let height = UIScreen.main.bounds.size.height
+    static let maxLength = max(ScreenSize.width, ScreenSize.height)
+    static let minLength = min(ScreenSize.width, ScreenSize.height)
+}
+
+fileprivate struct KeybDimensions{
+    
+    //iPod touch(7), iPhone 5, iPhone 5s, iPhone 5C, iPhone SE
+    static let iPhone5Height: CGFloat = 568
+    static let iPhone5Width: CGFloat = 320
+    
+    //Keyboard and toolbar height
+    static let i5KeybP: CGFloat = 216       //Portrait keyb without toolbar
+    static let i5KeybPTool: CGFloat = 260   //Portrait keyb with toolbar
+    static let i5KeybL: CGFloat = 162       //Landscape keyb without toolbar
+    static let i5KeybLTool: CGFloat = 200   //Landscape keyb with toolbar
+    static let i5PToolbar: CGFloat = i5KeybPTool-i5KeybP    //Portrait toolbar
+    static let i5LToolbar: CGFloat = i5KeybLTool-i5KeybL    //Landscape toolbar
+    
+    //iPhone 6, iPhone 6s, iPhone 7, iPhone 8, iPhone SE2
+    static let iPhone6Height: CGFloat = 667
+    static let iPhone6Width: CGFloat = 375
+    
+    //Keyboard and toolbar height
+    static let i6KeybP: CGFloat = 216
+    static let i6KeybPTool: CGFloat = 260
+    static let i6KeybL: CGFloat = 162
+    static let i6KeybLTool: CGFloat = 200
+    static let i6PToolbar: CGFloat = i6KeybPTool-i6KeybP
+    static let i6LToolbar: CGFloat = i6KeybLTool-i6KeybL
+    
+    //iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus
+    static let iPhonePlusHeight: CGFloat = 667
+    static let iPhonePlusWidth: CGFloat = 375
+    
+    static let iPlusKeybP: CGFloat = 226
+    static let iPlusKeybPTool: CGFloat = 271
+    static let iPlusKeybL: CGFloat = 162
+    static let iPlusKeybLTool: CGFloat = 200
+    static let iPlusPToolbar: CGFloat = iPlusKeybPTool-iPlusKeybP
+    static let iPlusLToolbar: CGFloat = iPlusKeybLTool-iPlusKeybL
+    
+    //iPhone XR, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max
+    static let iPhoneMaxHeight: CGFloat = 896
+    static let iPhoneMaxWidth: CGFloat = 414
+    
+    static let iMaxKeybP: CGFloat = 301
+    static let iMaxKeybPTool: CGFloat = 346
+    static let iMaxKeybL: CGFloat = 171
+    static let iMaxKeybLTool: CGFloat = 209
+    static let iMaxPToolbar: CGFloat = iMaxKeybPTool-iMaxKeybP
+    static let iMaxLToolbar: CGFloat = iMaxKeybLTool-iMaxKeybL
+    
+    //iPhone X, iPhone Xs, iPhone 11 Pro, 12 mini
+    static let iPhoneXHeight: CGFloat = 812
+    static let iPhoneXWidth: CGFloat = 375
+    
+    static let iXKeybP: CGFloat = 291
+    static let iXKeybPTool: CGFloat = 336
+    static let iXKeybL: CGFloat = 171
+    static let iXKeybLTool: CGFloat = 209
+    static let iXPToolbar: CGFloat = iXKeybPTool-iXKeybP
+    static let iXLToolbar: CGFloat = iXKeybLTool-iXKeybL
+    
+    //iPhone 12, iPhone 12 Pro
+    static let iPhone12ProHeight: CGFloat = 844
+    static let iPhone12ProWidth: CGFloat = 390
+    
+    static let i12ProKeybP: CGFloat = 291
+    static let i12ProKeybPTool: CGFloat = 336
+    static let i12ProKeybL: CGFloat = 181
+    static let i12ProKeybLTool: CGFloat = 219
+    static let i12ProPToolbar: CGFloat = i12ProKeybPTool-i12ProKeybP
+    static let i12ProLToolbar: CGFloat = i12ProKeybLTool-i12ProKeybL
+    
+    //iPhone 12, iPhone 12 Pro MAx
+    static let iPhoneProMaxHeight: CGFloat = 926
+    static let iPhoneProMaxWidth: CGFloat = 428
+    
+    static let i12ProMaxKeybP: CGFloat = 301
+    static let i12ProMaxKeybPTool: CGFloat = 346
+    static let i12ProMaxKeybL: CGFloat = 181
+    static let i12ProMaxKeybLTool: CGFloat = 219
+    static let i12ProMaxPToolbar: CGFloat = i12ProMaxKeybPTool-i12ProMaxKeybP
+    static let i12ProMaxLToolbar: CGFloat = i12ProMaxKeybLTool-i12ProMaxKeybL
+    
+    //iPadPro 12.9
+    static let iPadPro12Height: CGFloat = 1366
+    static let iPadPro12Width: CGFloat = 1024
+    
+    static let iPP12KeybP: CGFloat = 348
+    static let iPP12KeybPTool: CGFloat = 403
+    static let iPP12KeybL: CGFloat = 443
+    static let iPP12KeybLTool: CGFloat = 498
+    static let iPP12PToolbar: CGFloat = iPP12KeybPTool-iPP12KeybP
+    static let iPP12LToolbar: CGFloat = iPP12KeybLTool-iPP12KeybL
+    
+    //iPadPro 11
+    static let iPadPro11Height: CGFloat = 1194
+    static let iPadPro11Width: CGFloat = 834
+    
+    static let iPP11KeybP: CGFloat = 285
+    static let iPP11KeybPTool: CGFloat = 340
+    static let iPP11KeybL: CGFloat = 373
+    static let iPP11KeybLTool: CGFloat = 428
+    static let iPP11PToolbar: CGFloat = iPP11KeybPTool-iPP11KeybP
+    static let iPP11LToolbar: CGFloat = iPP11KeybLTool-iPP11KeybL
+    
+    //iPadPro 9.7
+    static let iPadPro9Height: CGFloat = 1024
+    static let iPadPro9Width: CGFloat = 768
+    
+    static let iPP9KeybP: CGFloat = 265
+    static let iPP9KeybPTool: CGFloat = 320
+    static let iPP9KeybL: CGFloat = 353
+    static let iPP9KeybLTool: CGFloat = 408
+    static let iPP9PToolbar: CGFloat = iPP9KeybPTool-iPP9KeybP
+    static let iPP9LToolbar: CGFloat = iPP9KeybLTool-iPP9KeybL
+    
+    //iPadAir
+    static let iPadAirHeight: CGFloat = 1180
+    static let iPadAirWidth: CGFloat = 820
+    
+    static let iPAKeybP: CGFloat = 282
+    static let iPAKeybPTool: CGFloat = 337
+    static let iPAKeybL: CGFloat = 367
+    static let iPAKeybLTool: CGFloat = 422
+    static let iPAPToolbar: CGFloat = iPAKeybPTool-iPAKeybP
+    static let iPALToolbar: CGFloat = iPAKeybLTool-iPAKeybL
+    
+    //iPad 8 gen
+    static let iPad8Height: CGFloat = 1080
+    static let iPad8Width: CGFloat = 810
+    
+    static let iP8KeybP: CGFloat = 265
+    static let iP8KeybPTool: CGFloat = 320
+    static let iP8KeybL: CGFloat = 353
+    static let iP8KeybLTool: CGFloat = 408
+    static let iP8PToolbar: CGFloat = iP8KeybPTool-iP8KeybP
+    static let iP8LToolbar: CGFloat = iP8KeybLTool-iP8KeybL
+}
+
+ fileprivate struct KeybDevice {
+    //iPod touch(7), iPhone 5, iPhone 5s, iPhone 5C, iPhone SE
+    static let iPhone5_SE_iPod = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength <= KeybDimensions.iPhone5Height && ScreenSize.minLength <= KeybDimensions.iPhone5Width
+    
+    //iPhone 6, iPhone 6s, iPhone 7, iPhone 8, iPhone SE2
+    static let iPhone6_7_8_SE = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhone6Height && ScreenSize.minLength == KeybDimensions.iPhone6Width
+    
+    //iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus, iPhone 8 Plus
+    static let iPhonePlus = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhonePlusHeight && ScreenSize.minLength == KeybDimensions.iPhonePlusWidth
+    
+    //iPhone XR, iPhone Xs Max, iPhone 11, iPhone 11 Pro Max
+    static let iPhoneMax = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhoneMaxHeight && ScreenSize.minLength == KeybDimensions.iPhoneMaxWidth
+    
+    //iPhone X, iPhone Xs, iPhone 11 Pro, 12 mini
+    static let iPhoneX_Xs_11P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhoneXHeight && ScreenSize.minLength == KeybDimensions.iPhoneXWidth
+    
+    //iPhone 12, iPhone 12 Pro
+    static let iPhone12_12P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhone12ProHeight && ScreenSize.minLength == KeybDimensions.iPhone12ProWidth
+    
+    //iPhone 12, iPhone 12 Pro MAx
+    static let iPhone12PM = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.maxLength == KeybDimensions.iPhoneProMaxHeight && ScreenSize.minLength == KeybDimensions.iPhoneProMaxWidth
+    
+    //iPadPro 12.9
+    static let iPadPro12 = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength == KeybDimensions.iPadPro12Height && ScreenSize.minLength == KeybDimensions.iPadPro12Width
+    
+    //iPadPro 11
+    static let iPadPro11 = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength == KeybDimensions.iPadPro11Height && ScreenSize.minLength == KeybDimensions.iPadPro11Width
+    
+    //iPadPro 9.7
+    static let iPadPro9 = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength == KeybDimensions.iPadPro9Height && ScreenSize.minLength == KeybDimensions.iPadPro9Width
+    
+    
+    //iPadAir
+    static let iPadAir = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength == KeybDimensions.iPadAirHeight && ScreenSize.minLength == KeybDimensions.iPadAirWidth
+    
+    //iPad 8 gen
+    static let iPad8Gen = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.maxLength == KeybDimensions.iPad8Height && ScreenSize.minLength == KeybDimensions.iPad8Width
+    
+    //iPad 8 gen
+    
+    static let genericPad = UIDevice.current.userInterfaceIdiom == .pad
+    
+    
+}
+
+func calculateKeyboardHeight() -> CGFloat{
+    var height: CGFloat = 0.0
+    if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+        if KeybDevice.iPhone5_SE_iPod{
+            height = KeybDimensions.i5KeybL //Returns landscape height without toolbar
+        }  else if KeybDevice.iPhone6_7_8_SE{
+            height = KeybDimensions.i6KeybL
+        } else if KeybDevice.iPhonePlus{
+            height = KeybDimensions.iPlusKeybL
+        } else if KeybDevice.iPhoneMax{
+            height = KeybDimensions.iMaxKeybL
+        } else if KeybDevice.iPhoneX_Xs_11P{
+            height = KeybDimensions.iXKeybL
+        } else if KeybDevice.iPhone12_12P{
+            height = KeybDimensions.i12ProKeybL
+        } else if KeybDevice.iPhone12PM{
+            height = KeybDimensions.i12ProMaxKeybL
+        } else if KeybDevice.iPadPro12{
+            height = KeybDimensions.iPP12KeybL
+        } else if KeybDevice.iPadPro11{
+            height = KeybDimensions.iPP11KeybL
+        } else if KeybDevice.iPadPro9{
+            height = KeybDimensions.iPP9KeybL
+        } else if KeybDevice.iPadAir{
+            height = KeybDimensions.iPAKeybL
+        } else if KeybDevice.iPad8Gen{
+            height = KeybDimensions.iP8KeybL
+        } else if KeybDevice.genericPad{
+            height = KeybDimensions.iP8KeybL //using this as generic height
+        }
+    } else {
+        
+        if KeybDevice.iPhone5_SE_iPod{
+            height = KeybDimensions.i5KeybP //Returns portrait height without toolbar
+        }  else if KeybDevice.iPhone6_7_8_SE{
+            height = KeybDimensions.i6KeybP
+        } else if KeybDevice.iPhonePlus{
+            height = KeybDimensions.iPlusKeybP
+        } else if KeybDevice.iPhoneMax{
+            height = KeybDimensions.iMaxKeybP
+        } else if KeybDevice.iPhoneX_Xs_11P{
+            height = KeybDimensions.iXKeybP
+        } else if KeybDevice.iPhone12_12P{
+            height = KeybDimensions.i12ProKeybP
+        } else if KeybDevice.iPhone12PM{
+            height = KeybDimensions.i12ProMaxKeybP
+        } else if KeybDevice.iPadPro12{
+            height = KeybDimensions.iPP12KeybP
+        } else if KeybDevice.iPadPro11{
+            height = KeybDimensions.iPP11KeybP
+        } else if KeybDevice.iPadPro9{
+            height = KeybDimensions.iPP9KeybP
+        } else if KeybDevice.iPadAir{
+            height = KeybDimensions.iPAKeybP
+        } else if KeybDevice.iPad8Gen{
+            height = KeybDimensions.iP8KeybP
+        } else if KeybDevice.genericPad{
+            height = KeybDimensions.iP8KeybP //using this as generic height
+        }
+       
+    }
+    return height
+}
+
